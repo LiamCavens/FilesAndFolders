@@ -51,7 +51,7 @@ public class File {
         this.extension = extension;
     }
 
-    @Column
+    @Column(name="size")
     public int getSize() {
         return size;
     }
