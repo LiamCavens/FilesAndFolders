@@ -41,6 +41,20 @@ public class DBHelper {
         return results;
     }
 
+    public static void delete(Object object){
+        session = db.HibernateUtil.getSessionFactory().openSession();
+        try {
+            transaction = session.beginTransaction();
+            session.delete(object);
+            transaction.commit();
+        } catch (HibernateException e){
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
     public static <T> T find(Class classType, int id){
         session = db.HibernateUtil.getSessionFactory().openSession();
         T result = null;
